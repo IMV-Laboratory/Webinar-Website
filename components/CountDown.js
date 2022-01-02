@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useWebinarDate } from '../hooks/useRegistration';
+import { useCountDown } from '../store/countDown';
 
 const CountDown = () => {
     const { data: webinarDate } = useWebinarDate();
 
-    const [days, setDays] = useState(0);
-    const [hours, setHours] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
+    const days = useCountDown(state => state.days);
+    const hours = useCountDown(state => state.hours);
+    const minutes = useCountDown(state => state.minutes);
+    const seconds = useCountDown(state => state.seconds);
+    const updateCountDown = useCountDown(state => state.updateCountDown);
+    const isOutOfTime = useCountDown(state => state.isOutOfTime);
+    const checkIsOutOfTime = useCountDown(state => state.checkIsOutOfTime);
 
     useEffect(() => {
         const eventDate = new Date(webinarDate);
@@ -23,21 +27,19 @@ const CountDown = () => {
             let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let s = Math.floor((distance % (1000 * 60)) / 1000);
 
-            setDays(d);
-            setHours(h);
-            setMinutes(m);
-            setSeconds(s);
+            updateCountDown(d, h, m, s);
+            checkIsOutOfTime();
 
             if (distance < 0) {
                 clearInterval();
             }
         }, 1000);
         return () => clearInterval(counter);
-    }, [webinarDate]);
+    }, [checkIsOutOfTime, updateCountDown, webinarDate]);
 
     return (
         <div className='px-4'>
-            {days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0 ? (
+            {isOutOfTime ? (
                 <div className='p-8 rounded-lg text-red-50 bg-red-500 bg-opacity-25'>
                     <h2 className='text-center'>
                         Masa pendaftaran berakhir 😓
