@@ -9,7 +9,6 @@ const checkWebinarDate = async () => {
         .single();
 
     if (error) throw new Error(error.message);
-    console.log('DATE:', data.held_on);
 
     return data.held_on;
 };
