@@ -5,7 +5,7 @@ const MainLayout = ({ children }) => {
     return (
         <div>
             <NavBar />
-            <div className='flex flex-col md:flex-row justify-center items-center gap-8 my-8'>
+            <div className='flex flex-col md:flex-row justify-center gap-8 my-8'>
                 {children}
             </div>
             <Footer />
