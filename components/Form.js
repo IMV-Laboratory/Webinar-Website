@@ -2,14 +2,22 @@ import InputField from './InputField';
 import { useState, useEffect } from 'react';
 import { useRegistration } from '../hooks/useRegistration';
 import Modal from './Modal';
+import Image from 'next/image';
 
 const Form = () => {
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [major, setMajor] = useState('');
+    const [profile, setProfile] = useState(null);
 
-    const registrationMutation = useRegistration(fullname, email, phone, major);
+    const registrationMutation = useRegistration(
+        fullname,
+        email,
+        phone,
+        major,
+        profile
+    );
 
     const handleRegistration = () => {
         registrationMutation.mutate();
@@ -32,6 +40,7 @@ const Form = () => {
         setEmail('');
         setPhone('');
         setMajor('');
+        setProfile(null);
         Array.from(document.querySelectorAll('input')).forEach(
             input => (input.value = '')
         );
@@ -75,6 +84,7 @@ const Form = () => {
                     placeholder='Ahmad Alfan'
                     onChange={e => setFullname(e.target.value)}
                     required
+                    autoComplete='on'
                 />
                 <InputField
                     name='email'
@@ -83,6 +93,7 @@ const Form = () => {
                     placeholder='username@student.telkomuniversity.ac.id'
                     onChange={e => setEmail(e.target.value)}
                     required
+                    autoComplete='on'
                 />
                 <InputField
                     name='phone'
@@ -91,6 +102,7 @@ const Form = () => {
                     placeholder='081234567890'
                     onChange={e => setPhone(e.target.value)}
                     required
+                    autoComplete='on'
                 />
                 <InputField
                     name='major'
@@ -99,7 +111,43 @@ const Form = () => {
                     placeholder='S1 Teknik Telekomunikasi'
                     onChange={e => setMajor(e.target.value)}
                     required
+                    autoComplete='on'
                 />
+                <InputField
+                    name='profile'
+                    label='Foto Wajah (Profil)'
+                    type='file'
+                    accept='image/*'
+                    className='file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:font-semibold file:bg-slate-700 file:text-slate-100 hover:file:bg-slate-600'
+                    onChange={e => setProfile(e.target.files[0])}
+                    required
+                />
+                <div className='grid grid-flow-col px-4 items-center gap-4'>
+                    <Image
+                        src={
+                            profile
+                                ? URL.createObjectURL(profile)
+                                : '/logo.webp'
+                        }
+                        onError={() => setProfile('/logo.webp')}
+                        width={72}
+                        height={72}
+                        layout='fixed'
+                        objectFit='cover'
+                        className='bg-white rounded-full'
+                        alt='profile'
+                    />
+                    <ul className='list-disc ml-4 text-xs text-slate-500'>
+                        <li>
+                            Foto akan ditampilkan pada website IMV Laboratory
+                            pada bagian review webinar.
+                        </li>
+                        <li>
+                            Pastikan wajah terlihat jelas dan tidak mengandung
+                            unsur SARA.
+                        </li>
+                    </ul>
+                </div>
                 <button
                     onClick={handleRegistration}
                     className='mt-4 bg-blue-800 hover:bg-blue-500'>

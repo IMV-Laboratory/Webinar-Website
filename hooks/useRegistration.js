@@ -17,10 +17,10 @@ export const useWebinarDate = () => {
     return useQuery('webinar_date', checkWebinarDate);
 };
 
-const registerParticipant = async (fullname, email, phone, major) => {
+const registerParticipant = async (fullname, email, phone, major, profile) => {
     console.log(fullname, email, phone, major);
 
-    if (!fullname || !email || !phone || !major) {
+    if (!fullname || !email || !phone || !major || !profile) {
         throw new Error('Semua data wajib diisi!');
     }
 
@@ -50,6 +50,31 @@ const registerParticipant = async (fullname, email, phone, major) => {
                 `Halo ${existingParticipant[0].fullname}, kamu sudah terdaftar sebagai peserta webinar. Mohon ditunggu informasi selanjutnya ya 😊.`
             );
         } else {
+            const filename = `${fullname
+                .toLowerCase()
+                .replace(' ', '_')}_profile_${Date.now()}`;
+
+            const { data: profileUpload, error: profileUploadError } =
+                await supabase.storage
+                    .from('webinar-photos')
+                    .upload(`profile/${filename}`, profile, {
+                        cacheControl: 0,
+                        upsert: true,
+                    });
+
+            if (profileUploadError) throw new Error(profileUploadError.message);
+
+            let profileURL = null;
+            if (profileUpload) {
+                const { data: urlData, error: errorURLData } =
+                    await supabase.storage
+                        .from('webinar-photos')
+                        .getPublicUrl(`profile/${filename}`);
+
+                if (errorURLData) throw new Error(errorURLData.message);
+                if (urlData) profileURL = urlData.publicURL;
+            }
+
             const { error: registartionError } = await supabase
                 .from('webinar_participants')
                 .insert({
@@ -61,6 +86,7 @@ const registerParticipant = async (fullname, email, phone, major) => {
                     status: 'Mahasiswa',
                     organization: 'Telkom University',
                     attendance: false,
+                    profileURL: profileURL,
                 });
 
             if (registartionError) throw new Error(registartionError.message);
@@ -73,8 +99,8 @@ const registerParticipant = async (fullname, email, phone, major) => {
     }
 };
 
-export const useRegistration = (fullname, email, phone, major) => {
+export const useRegistration = (fullname, email, phone, major, profile) => {
     return useMutation(() =>
-        registerParticipant(fullname, email, phone, major)
+        registerParticipant(fullname, email, phone, major, profile)
     );
 };
