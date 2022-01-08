@@ -16,7 +16,11 @@ const Form = () => {
         email,
         phone,
         major,
-        profile
+        //angkatan,
+        //unameig,
+        //telegram,
+        profile,
+        //ssfollowig
     );
 
     const handleRegistration = () => {
@@ -72,11 +76,9 @@ const Form = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-4 px-4 w-full max-w-xl'>
-                <h1 className='text-center'>Ayo, daftarkan dirimu!</h1>
-                <p className='-mt-2 text-blue-300 text-center'>
-                    Cari tahu prospek karir dari alumni IMV Laboratory
-                </p>
+            <div className='flex flex-col gap-4 px-4 w-full max-w-xl py-16'>
+                <h1 className='text-center'>Register Below</h1>
+
                 <InputField
                     name='fullname'
                     label='Nama Lengkap'
@@ -113,6 +115,15 @@ const Form = () => {
                     required
                     autoComplete='on'
                 />
+                    {/* <InputField
+                    name='angkatan'
+                    label='Angkatan'
+                    type='text'
+                    placeholder='2019'
+                    onChange={e => setMajor(e.target.value)}
+                    required
+                    autoComplete='on'
+                /> */}
                 <InputField
                     name='profile'
                     label='Foto Wajah (Profil)'
@@ -122,6 +133,23 @@ const Form = () => {
                     onChange={e => setProfile(e.target.files[0])}
                     required
                 />
+                    {/* <InputField
+                    name='ssfollowig'
+                    label='Screenshoot telah follow Instagram IMV'
+                    type='file'
+                    accept='image/*'
+                    className='file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:font-semibold file:bg-slate-700 file:text-slate-100 hover:file:bg-slate-600'
+                    onChange={e => setProfile(e.target.files[0])}
+                /> */}
+                    {/* <InputField
+                    name='telegram'
+                    label='Username Telegram'
+                    type='text'
+                    placeholder='@banggaadi'
+                    onChange={e => setMajor(e.target.value)}
+                    required
+                    autoComplete='on'
+                /> */}
                 <div className='grid grid-flow-col px-4 items-center gap-4'>
                     <Image
                         src={
@@ -151,7 +179,7 @@ const Form = () => {
                 <button
                     onClick={handleRegistration}
                     className='mt-4 bg-blue-800 hover:bg-blue-500'>
-                    Daftar
+                    Register
                 </button>
             </div>
             {modal.show && (
