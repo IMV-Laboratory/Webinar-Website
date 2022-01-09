@@ -20,12 +20,11 @@ export default function Home() {
                 />
             </Head>
             <MainLayout>
-                <Hero/>
-                <Speaker/>
-                <CountDown/>
+                <Hero />
+                <Speaker />
+                <CountDown />
                 {!isOutOfTime && <Form />}
             </MainLayout>
-            
         </>
     );
 }

@@ -21,13 +21,23 @@ const registerParticipant = async (
     fullname,
     email,
     phone,
+    igUsername,
+    isFollower,
     major,
     year,
     profile
 ) => {
-    console.log(fullname, email, phone, major, year);
+    console.log(fullname, email, phone, igUsername, isFollower, major, year);
 
-    if (!fullname || !email || !phone || !major || !year || !profile) {
+    if (
+        !fullname ||
+        !email ||
+        !phone ||
+        !igUsername ||
+        !major ||
+        !year ||
+        !profile
+    ) {
         throw new Error('Semua data wajib diisi!');
     }
 
@@ -57,6 +67,12 @@ const registerParticipant = async (
                 `Halo ${existingParticipant[0].fullname}, kamu sudah terdaftar sebagai peserta webinar. Mohon ditunggu informasi selanjutnya ya 😊.`
             );
         } else {
+            if (!isFollower) {
+                throw new Error(
+                    'Anda belum mengikuti @imv.laboratory di Instagram!'
+                );
+            }
+
             const filename = `${fullname
                 .toLowerCase()
                 .replace(' ', '_')}_profile_${Date.now()}`;
@@ -88,6 +104,7 @@ const registerParticipant = async (
                     fullname: fullname,
                     email: email,
                     phone: phone,
+                    instagram: igUsername,
                     major: major,
                     year: year,
                     webinar: activeWebinar.id,
@@ -111,11 +128,22 @@ export const useRegistration = (
     fullname,
     email,
     phone,
+    igUsername,
+    isFollower,
     major,
     year,
     profile
 ) => {
     return useMutation(() =>
-        registerParticipant(fullname, email, phone, major, year, profile)
+        registerParticipant(
+            fullname,
+            email,
+            phone,
+            igUsername,
+            isFollower,
+            major,
+            year,
+            profile
+        )
     );
 };

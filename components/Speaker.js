@@ -1,10 +1,8 @@
 import Image from 'next/image';
 const Speaker = () => {
-    return ( 
+    return (
         <div className='flex flex-col items-center py-8 font-montserrat'>
-            <h1>
-                Meet Our Speaker
-            </h1>
+            <h1>Meet Our Speaker</h1>
 
             <div className='flex md:flex-row flex-col justify-between py-8'>
                 <div className='px-20 py-4'>
@@ -12,7 +10,9 @@ const Speaker = () => {
                         src='/Speaker kiri 1.png'
                         width={180}
                         height={180}
-                        
+                        layout='fixed'
+                        objectFit='contain'
+                        alt='alfan'
                     />
                     <p className='text-center text-base font-bold py-2'>
                         AHMAD ALFAN
@@ -27,6 +27,9 @@ const Speaker = () => {
                         src='/Speaker Tengah1 2.png'
                         width={180}
                         height={180}
+                        layout='fixed'
+                        objectFit='contain'
+                        alt='yoga'
                     />
                     <p className='text-center text-base font-bold py-2'>
                         YOGA YUSTIAWAN
@@ -37,25 +40,31 @@ const Speaker = () => {
                 </div>
                 <div className='px-20 py-4'>
                     <Image
-                            src='/Speaker Kanan 1.png'
-                            width={180}
-                            height={180}
-                        />
-                        <p className='text-center text-base font-bold py-2'>
-                            BANG UCUP
-                        </p>
-                        <p className='text-xs text-center'>
-                        Data Analyst Sony Erricson
-                        </p>
+                        src='/Speaker Kanan 1.png'
+                        width={180}
+                        height={180}
+                        layout='fixed'
+                        objectFit='contain'
+                        alt='yusuf'
+                    />
+                    <p className='text-center text-base font-bold py-2'>
+                        AKHMAD YUSUF
+                    </p>
+                    <p className='text-xs text-center'>
+                        Data Analyst <br /> Sony Erricson
+                    </p>
                 </div>
             </div>
             <div className='flex flex-row py-8'>
                 <div className='px-8'>
                     <Image
-                            src='/zoom.png'
-                            width={64}
-                            height={50}
-                        />
+                        src='/zoom.png'
+                        width={64}
+                        height={64}
+                        layout='fixed'
+                        objectFit='contain'
+                        alt='zoom'
+                    />
                 </div>
                 <div>
                     <p className='font-bold text-lg text-center'>
@@ -65,17 +74,35 @@ const Speaker = () => {
                         10.00 - 13.00 WIB
                     </p>
                 </div>
-
             </div>
 
             <p className='text-center py-4'>
-                IMV Laboratory mengadakan webinar kembali dengan tema <br /> 
-                Artificial Intelligence di industri 5.0. Webinar kali ini bertujuan untuk <br /> 
-                memberi tahu prospek kerja dari alumni IMV Laboratory. 
+                IMV Laboratory mengadakan webinar kembali dengan tema <br />
+                Artificial Intelligence di industri 5.0. Webinar kali ini
+                bertujuan untuk <br />
+                memberi tahu prospek kerja dari alumni IMV Laboratory.
             </p>
 
+            <div className='flex flex-col md:flex-row items-center md:justify-evenly my-8 w-full'>
+                <Image
+                    src='/Aya.svg'
+                    width={300}
+                    height={150}
+                    layout='fixed'
+                    objectFit='contain'
+                    alt='aya'
+                />
+                <Image
+                    src='/Dena.svg'
+                    width={300}
+                    height={150}
+                    layout='fixed'
+                    objectFit='contain'
+                    alt='dena'
+                />
+            </div>
         </div>
-     );
-}
- 
+    );
+};
+
 export default Speaker;

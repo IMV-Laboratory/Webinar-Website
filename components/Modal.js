@@ -10,7 +10,7 @@ const Modal = ({
                 <p>{message}</p>
                 <button
                     onClick={closeModal}
-                    className='p-2 bg-blue-800 hover:bg-blue-500'>
+                    className='p-2 bg-violet-800 hover:bg-violet-500'>
                     Ok
                 </button>
             </div>

@@ -1,6 +1,7 @@
 import InputField from './InputField';
 import { useState, useEffect } from 'react';
 import { useRegistration } from '../hooks/useRegistration';
+import { useCheckFollower } from '../hooks/useInstagram';
 import Modal from './Modal';
 import Image from 'next/image';
 
@@ -8,18 +9,76 @@ const Form = () => {
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [igUsername, setIgUsername] = useState('');
+    const [isFollower, setIsFollower] = useState(false);
+    const [message, setMessage] = useState('');
     const [major, setMajor] = useState('');
     const [year, setYear] = useState('');
     const [profile, setProfile] = useState(null);
+
+    const clearAllState = () => {
+        setFullname('');
+        setEmail('');
+        setPhone('');
+        setIgUsername('');
+        setIsFollower(false);
+        setMajor('');
+        setYear('');
+        setProfile(null);
+        setMessage('');
+        Array.from(document.querySelectorAll('input')).forEach(
+            input => (input.value = '')
+        );
+    };
 
     const registrationMutation = useRegistration(
         fullname,
         email,
         phone,
+        igUsername,
+        isFollower,
         major,
         year,
         profile
     );
+
+    const checkFollowerMutation = useCheckFollower(igUsername);
+
+    const checkInstagram = () => {
+        setIsFollower(false);
+        checkFollowerMutation.mutate();
+    };
+
+    useEffect(() => {
+        if (checkFollowerMutation.isSuccess) {
+            setIsFollower(checkFollowerMutation.data);
+            setMessage(
+                <p className='text-xs'>
+                    Akun Anda {igUsername}, sudah mengikuti {IMVInstagramLink}{' '}
+                    di Instagram.
+                </p>
+            );
+        }
+
+        if (checkFollowerMutation.isError) {
+            setMessage(
+                <p className='text-xs'>
+                    Anda belum mengikuti {IMVInstagramLink} di Instagram.
+                </p>
+            );
+        }
+
+        if (checkFollowerMutation.isLoading) {
+            setMessage(
+                <p className='text-xs'>Memeriksa akun Anda, {igUsername} ...</p>
+            );
+        }
+    }, [
+        checkFollowerMutation.data,
+        checkFollowerMutation.isSuccess,
+        checkFollowerMutation.isError,
+        checkFollowerMutation.isLoading,
+    ]);
 
     const handleRegistration = () => {
         registrationMutation.mutate();
@@ -38,15 +97,6 @@ const Form = () => {
             show: false,
         });
         document.body.style.overflowY = 'scroll';
-        setFullname('');
-        setEmail('');
-        setPhone('');
-        setMajor('');
-        setYear('');
-        setProfile(null);
-        Array.from(document.querySelectorAll('input')).forEach(
-            input => (input.value = '')
-        );
     };
 
     useEffect(() => {
@@ -62,9 +112,26 @@ const Form = () => {
         if (registrationMutation.isSuccess) {
             setModal({
                 title: 'Pendaftaran berhasil',
-                message: registrationMutation.data,
+                message: (
+                    <>
+                        <p>{registrationMutation.data}</p>
+                        <br />
+                        <p>
+                            Join grup telegram berikut untuk informasi
+                            selanjutnya:
+                        </p>
+                        <a
+                            className='text-blue-300 underline'
+                            href='https://t.me/+kad3Yo31TxU4YjFl'
+                            target='_blank'
+                            rel='noopener noreferrer'>
+                            Grup Telegram Webinar IMV Laboratory
+                        </a>
+                    </>
+                ),
                 show: true,
             });
+            clearAllState();
             document.body.style.overflowY = 'hidden';
         }
     }, [
@@ -75,7 +142,7 @@ const Form = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-4 px-4 w-full max-w-xl py-16 font-montserrat'>
+            <div className='flex flex-col gap-4 w-full max-w-xl py-16 font-montserrat'>
                 <h1 className='text-center'>Register Below</h1>
 
                 <InputField
@@ -114,20 +181,11 @@ const Form = () => {
                     required
                     autoComplete='on'
                 />
-                    {/* <InputField
-                    name='angkatan'
-                    label='Angkatan'
-                    type='text'
-                    placeholder='2019'
-                    onChange={e => setMajor(e.target.value)}
-                    required
-                    autoComplete='on'
-                /> */}
                 <InputField
                     name='year'
                     label='Angkatan'
                     type='text'
-                    placeholder='2018'
+                    placeholder='2019'
                     onChange={e => setYear(e.target.value)}
                     required
                     autoComplete='on'
@@ -141,23 +199,6 @@ const Form = () => {
                     onChange={e => setProfile(e.target.files[0])}
                     required
                 />
-                    {/* <InputField
-                    name='ssfollowig'
-                    label='Screenshoot telah follow Instagram IMV'
-                    type='file'
-                    accept='image/*'
-                    className='file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:font-semibold file:bg-slate-700 file:text-slate-100 hover:file:bg-slate-600'
-                    onChange={e => setProfile(e.target.files[0])}
-                /> */}
-                    {/* <InputField
-                    name='telegram'
-                    label='Username Telegram'
-                    type='text'
-                    placeholder='@banggaadi'
-                    onChange={e => setMajor(e.target.value)}
-                    required
-                    autoComplete='on'
-                /> */}
                 <div className='grid grid-flow-col px-4 items-center gap-4'>
                     <Image
                         src={
@@ -173,7 +214,7 @@ const Form = () => {
                         className='bg-white rounded-full'
                         alt='profile'
                     />
-                    <ul className='list-disc ml-4 text-xs text-slate-500'>
+                    <ul className='list-disc ml-4 text-xs text-slate-300'>
                         <li>
                             Foto akan ditampilkan pada website IMV Laboratory
                             pada bagian review webinar.
@@ -184,9 +225,30 @@ const Form = () => {
                         </li>
                     </ul>
                 </div>
+                <div className='relative mt-2'>
+                    <InputField
+                        name='ig'
+                        label='Instagram'
+                        type='text'
+                        placeholder='Username tanpa @'
+                        onChange={e => setIgUsername(e.target.value)}
+                        required
+                        autoComplete='on'
+                        isLoading={checkFollowerMutation.isLoading}
+                        isSuccess={checkFollowerMutation.isSuccess}
+                        isError={checkFollowerMutation.isError}
+                        message={message}
+                    />
+                    <button
+                        onClick={checkInstagram}
+                        className='absolute top-8 right-2 py-2 hover:bg-slate-700'>
+                        Periksa
+                    </button>
+                </div>
                 <button
+                    disabled={!isFollower}
                     onClick={handleRegistration}
-                    className='mt-4 bg-blue-800 hover:bg-blue-500'>
+                    className='mt-4 bg-violet-800 hover:bg-violet-500 disabled:bg-slate-700'>
                     Register
                 </button>
             </div>
@@ -201,4 +263,13 @@ const Form = () => {
     );
 };
 
+const IMVInstagramLink = (
+    <a
+        className='text-blue-300 underline'
+        href='https://www.instagram.com/imv.laboratory/'
+        target='_blank'
+        rel='noopener noreferrer'>
+        @imv.laboratory
+    </a>
+);
 export default Form;
