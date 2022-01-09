@@ -4,6 +4,8 @@ import Poster from '../components/Poster';
 import CountDown from '../components/CountDown';
 import { useCountDown } from '../store/countDown';
 import Head from 'next/head';
+import Hero from '../components/Hero';
+import Speaker from '../components/Speaker';
 
 export default function Home() {
     const isOutOfTime = useCountDown(state => state.isOutOfTime);
@@ -18,12 +20,12 @@ export default function Home() {
                 />
             </Head>
             <MainLayout>
-                <Poster imagePath={'/poster.jpeg'} />
-                <div className='flex flex-col gap-8 md:gap-4 w-full max-w-xl'>
-                    <CountDown />
-                    {!isOutOfTime && <Form />}
-                </div>
+                <Hero/>
+                <Speaker/>
+                <CountDown/>
+                {!isOutOfTime && <Form />}
             </MainLayout>
+            
         </>
     );
 }

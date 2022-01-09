@@ -7,8 +7,16 @@ module.exports = {
     theme: {
         extend: {},
         fontFamily: {
-            sans: ['Inter'],
+            'sans': ['Inter'],
+            'montserrat': ['Montserrat'],
+            'nulshock': ["Nulshock"]
         },
+        letterSpacing: {
+            '1': '0em',
+            '2': '0.1em',
+            '3': '0.2em',
+            '4': '0.45em',
+          },
     },
     plugins: [],
 };
