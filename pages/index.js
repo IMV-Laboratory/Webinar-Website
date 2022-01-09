@@ -18,7 +18,7 @@ export default function Home() {
                 />
             </Head>
             <MainLayout>
-                <Poster imagePath={'/poster.png'} />
+                <Poster imagePath={'/poster.jpeg'} />
                 <div className='flex flex-col gap-8 md:gap-4 w-full max-w-xl'>
                     <CountDown />
                     {!isOutOfTime && <Form />}
