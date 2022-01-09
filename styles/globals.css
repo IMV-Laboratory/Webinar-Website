@@ -6,10 +6,11 @@
 
 
 @font-face {
-    font-family: "Nulshock";
+    font-family: 'Nulshock';
     font-weight: 700;
-    src: url(/public/fonts/nulshock.ttf) format("ttf");
+    src: url(/fonts/nulshock.ttf);
 }
+
 body {
     @apply bg-gradient-to-r from-[#0A1053] to-[#512274] text-slate-50;
 }

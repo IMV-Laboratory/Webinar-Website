@@ -76,7 +76,7 @@ const Form = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-4 px-4 w-full max-w-xl py-16'>
+            <div className='flex flex-col gap-4 px-4 w-full max-w-xl py-16 font-montserrat'>
                 <h1 className='text-center'>Register Below</h1>
 
                 <InputField

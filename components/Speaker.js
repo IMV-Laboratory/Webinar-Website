@@ -1,13 +1,13 @@
 import Image from 'next/image';
 const Speaker = () => {
     return ( 
-        <div className='flex flex-col items-center py-8'>
+        <div className='flex flex-col items-center py-8 font-montserrat'>
             <h1>
                 Meet Our Speaker
             </h1>
 
-            <div className='flex flex-row justify-between py-8'>
-                <div className='px-4'>
+            <div className='flex md:flex-row flex-col justify-between py-8'>
+                <div className='px-20 py-4'>
                     <Image
                         src='/Speaker kiri 1.png'
                         width={180}
@@ -18,11 +18,24 @@ const Speaker = () => {
                         AHMAD ALFAN
                     </p>
                     <p className='text-xs text-center'>
-                        Research Assisstant Coordinator <br /> IMV Laboratory
+                        Assistant Coordinator <br /> IMV Laboratory
                     </p>
                 </div>
 
-                <div className='px-4'>
+                <div className='px-20 py-4'>
+                    <Image
+                        src='/Speaker Tengah1 2.png'
+                        width={180}
+                        height={180}
+                    />
+                    <p className='text-center text-base font-bold py-2'>
+                        YOGA YUSTIAWAN
+                    </p>
+                    <p className='text-xs text-center'>
+                        Data Scientist <br /> Bank Rakyat Indonesia
+                    </p>
+                </div>
+                <div className='px-20 py-4'>
                     <Image
                             src='/Speaker Kanan 1.png'
                             width={180}
@@ -34,19 +47,6 @@ const Speaker = () => {
                         <p className='text-xs text-center'>
                         Data Analyst Sony Erricson
                         </p>
-                </div>
-                <div className='px-4'>
-                    <Image
-                        src='/Speaker Kanan 2.png'
-                        width={180}
-                        height={180}
-                    />
-                    <p className='text-center text-base font-bold py-2'>
-                        AHMAD ALFAN
-                    </p>
-                    <p className='text-xs text-center'>
-                        Research Assisstant Coordinator <br /> IMV Laboratory
-                    </p>
                 </div>
             </div>
             <div className='flex flex-row py-8'>

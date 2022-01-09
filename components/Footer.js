@@ -3,36 +3,50 @@ import Image from 'next/image';
 const Footer = () => {
     return (
 
-        <div className='flex flex-row items-center justify-evenly py-8'>
-            <div>
-            <Image
-                    src='/line.png'
-                    width={32}
-                    height={32}
-                    
-                />
+        <div className='flex flex-row items-center justify-evenly  font-montserrat py-8'>
+            <div className='flex flex-col items-center'>
+                    <a
+                    href='https://line.me/R/ti/p/@uyy9001n'
+                    target='_blank'
+                    rel='noopener noreferrer'>
+                    <Image
+                        src='/line.png'
+                        width={32}
+                        height={32}
+                    />
+                    </a>
                 <p>
                     @uyy9001n
                 </p>
             </div>
 
 
-            <div>
-                <Image
+            <div className='flex flex-col items-center'>
+                    <a
+                    href='https://imvlaboratory.com'
+                    target='_blank'
+                    rel='noopener noreferrer'>
+                    <Image
                         src='/web.png'
                         width={32}
                         height={32}
                     />
+                    </a>
                     <p>
                     www.imvlaboratory.com
                     </p>
             </div>
-            <div>
-                <Image
+            <div className='flex flex-col items-center'>
+                    <a
+                    href='https://www.instagram.com/imv.laboratory/'
+                    target='_blank'
+                    rel='noopener noreferrer'>
+                    <Image
                         src='/ig.png'
                         width={32}
                         height={32}
                     />
+                    </a>
                     <p>
                     @imv.laboratory
                     </p>
