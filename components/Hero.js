@@ -1,4 +1,5 @@
 const n = 11;
+const opacity = ['[.1]','[.1]','[.1]','[.9]','[.8]','[.7]','[.6]','[.5]','[.3]','[.2]','[.1]',]
 const Hero = () => {
     return (
         <div className='flex flex-col'>
@@ -14,11 +15,12 @@ const Hero = () => {
                 </p>
             </div>
             <div className="absolute items-center font-bold font-montserrat">
-            {[...Array(n)].map((elementInArray, index) => ( 
+
+            {/* {[...Array(n)].map((elementInArray, index) => ( 
                     <h1 className='text-white/[.1] md:text-4xl tracking-2 md:tracking-4 py-3 md:text-left text-center'> ARTIFICIAL INTELLIGENCE</h1> 
                     ) 
-                )}
-                {/* <h1 className='text-white/[.1] md:text-4xl tracking-2 md:tracking-4 py-3 md:text-left text-center'>
+                )} */}
+                <h1 className='text-white/[.1] md:text-4xl tracking-2 md:tracking-4 py-3 md:text-left text-center'>
                     ARTIFICIAL INTELLIGENCE
                 </h1>
                 <h1 className='text-white/[.1] md:text-4xl tracking-2 md:tracking-4 py-3 md:text-left text-center'>
@@ -50,7 +52,7 @@ const Hero = () => {
                 </h1>
                 <h1 className='text-white/[.001] text-4xl tracking-4 py-3'>
                     ARTIFICIAL INTELLIGENCE
-                </h1> */}
+                </h1>
             </div>  
                 
         </div>
