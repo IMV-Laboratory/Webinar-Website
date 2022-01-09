@@ -23,7 +23,7 @@ export default function Home() {
                 <Hero/>
                 <Speaker/>
                 <CountDown/>
-                <Form/>
+                {!isOutOfTime && <Form />}
             </MainLayout>
             
         </>

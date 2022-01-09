@@ -9,6 +9,7 @@ const Form = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [major, setMajor] = useState('');
+    const [year, setYear] = useState('');
     const [profile, setProfile] = useState(null);
 
     const registrationMutation = useRegistration(
@@ -16,11 +17,8 @@ const Form = () => {
         email,
         phone,
         major,
-        //angkatan,
-        //unameig,
-        //telegram,
-        profile,
-        //ssfollowig
+        year,
+        profile
     );
 
     const handleRegistration = () => {
@@ -44,6 +42,7 @@ const Form = () => {
         setEmail('');
         setPhone('');
         setMajor('');
+        setYear('');
         setProfile(null);
         Array.from(document.querySelectorAll('input')).forEach(
             input => (input.value = '')
@@ -99,7 +98,7 @@ const Form = () => {
                 />
                 <InputField
                     name='phone'
-                    label='Nomor Hp / WhatsApp'
+                    label='Nomor Telegram'
                     type='tel'
                     placeholder='081234567890'
                     onChange={e => setPhone(e.target.value)}
@@ -124,6 +123,15 @@ const Form = () => {
                     required
                     autoComplete='on'
                 /> */}
+                <InputField
+                    name='year'
+                    label='Angkatan'
+                    type='text'
+                    placeholder='2018'
+                    onChange={e => setYear(e.target.value)}
+                    required
+                    autoComplete='on'
+                />
                 <InputField
                     name='profile'
                     label='Foto Wajah (Profil)'
