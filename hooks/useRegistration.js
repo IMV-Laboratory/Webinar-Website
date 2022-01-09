@@ -17,10 +17,17 @@ export const useWebinarDate = () => {
     return useQuery('webinar_date', checkWebinarDate);
 };
 
-const registerParticipant = async (fullname, email, phone, major, profile) => {
-    console.log(fullname, email, phone, major);
+const registerParticipant = async (
+    fullname,
+    email,
+    phone,
+    major,
+    year,
+    profile
+) => {
+    console.log(fullname, email, phone, major, year);
 
-    if (!fullname || !email || !phone || !major || !profile) {
+    if (!fullname || !email || !phone || !major || !year || !profile) {
         throw new Error('Semua data wajib diisi!');
     }
 
@@ -82,6 +89,7 @@ const registerParticipant = async (fullname, email, phone, major, profile) => {
                     email: email,
                     phone: phone,
                     major: major,
+                    year: year,
                     webinar: activeWebinar.id,
                     status: 'Mahasiswa',
                     organization: 'Telkom University',
@@ -99,8 +107,15 @@ const registerParticipant = async (fullname, email, phone, major, profile) => {
     }
 };
 
-export const useRegistration = (fullname, email, phone, major, profile) => {
+export const useRegistration = (
+    fullname,
+    email,
+    phone,
+    major,
+    year,
+    profile
+) => {
     return useMutation(() =>
-        registerParticipant(fullname, email, phone, major, profile)
+        registerParticipant(fullname, email, phone, major, year, profile)
     );
 };
