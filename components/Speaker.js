@@ -18,7 +18,7 @@ const Speaker = () => {
                         AHMAD ALFAN
                     </p>
                     <p className='text-xs text-center'>
-                        Assistant Coordinator <br /> IMV Laboratory
+                        Research Assistant Coordinator <br /> IMV Laboratory
                     </p>
                 </div>
 
@@ -51,7 +51,7 @@ const Speaker = () => {
                         AKHMAD YUSUF
                     </p>
                     <p className='text-xs text-center'>
-                        Data Analyst <br /> Sony Erricson
+                        Data Analyst <br /> Ericsson
                     </p>
                 </div>
             </div>
