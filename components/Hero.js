@@ -16,14 +16,14 @@ const Hero = () => {
     return (
         <div className='relative flex flex-col'>
             <div className='py-10 font-nulshock font-bold'>
-                <p className='text-[#85EFFF] drop-shadow-[2px_4px_25px_rgba(133,239,255,0.8)] md:text-left text-center md:text-5xl text-4xl py-4'>
-                    THE FUTURE OF
+                <p className='text-[#85EFFF] drop-shadow-[2px_4px_25px_rgba(133,239,255,0.8)] md:text-left text-center md:text-4xl text-3xl py-2 md:py-4'>
+                    THE IMPORTANCE OF
                 </p>
-                <p className='text-[#FFAEFF] drop-shadow-[2px_4px_25px_rgba(133,239,255,0.8)] md:text-left text-center md:text-5xl text-4xl py-4'>
-                    AI AND ITS FUTURE CAREER
+                <p className='text-[#FFAEFF] drop-shadow-[2px_4px_25px_rgba(133,239,255,0.8)] md:text-left text-center md:text-5xl text-4xl py-2 md:py-4'>
+                    ARTIFICIAL INTELLIGENCE
                 </p>
-                <p className='text-[#85EFFF] drop-shadow-[2px_4px_25px_rgba(133,239,255,0.8)] md:text-left text-center md:text-5xl text-4xl py-4'>
-                    IN INDUSTRY 5.0
+                <p className='text-[#85EFFF] drop-shadow-[2px_4px_25px_rgba(133,239,255,0.8)] md:text-left text-center md:text-3xl text-2xl py-2 md:py-4'>
+                    AND ITS FUTURE CAREER IN INDUSTRY 5.0
                 </p>
             </div>
             <div className='absolute self-center font-bold font-montserrat'>

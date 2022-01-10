@@ -76,10 +76,9 @@ const Speaker = () => {
                 </div>
             </div>
 
-            <p className='text-center py-4'>
-                IMV Laboratory mengadakan webinar kembali dengan tema <br />
-                Artificial Intelligence di industri 5.0. Webinar kali ini
-                bertujuan untuk <br />
+            <p className='text-center py-4 w-full max-w-lg'>
+                IMV Laboratory mengadakan webinar kembali dengan tema Artificial
+                Intelligence di Industri 5.0. Webinar kali ini bertujuan untuk
                 memberi tahu prospek kerja dari alumni IMV Laboratory.
             </p>
 
