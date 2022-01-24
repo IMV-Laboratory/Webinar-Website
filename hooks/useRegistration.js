@@ -29,15 +29,7 @@ const registerParticipant = async (
 ) => {
     console.log(fullname, email, phone, igUsername, isFollower, major, year);
 
-    if (
-        !fullname ||
-        !email ||
-        !phone ||
-        !igUsername ||
-        !major ||
-        !year ||
-        !profile
-    ) {
+    if (!fullname || !email || !phone || !major || !year || !profile) {
         throw new Error('Semua data wajib diisi!');
     }
 
@@ -67,12 +59,6 @@ const registerParticipant = async (
                 `Halo ${existingParticipant[0].fullname}, kamu sudah terdaftar sebagai peserta webinar. Mohon ditunggu informasi selanjutnya ya 😊.`
             );
         } else {
-            if (!isFollower) {
-                throw new Error(
-                    'Anda belum mengikuti @imv.laboratory di Instagram!'
-                );
-            }
-
             const filename = `${fullname
                 .toLowerCase()
                 .replace(' ', '_')}_profile_${Date.now()}`;

@@ -228,7 +228,7 @@ const Form = () => {
                 <div className='relative mt-2'>
                     <InputField
                         name='ig'
-                        label='Instagram'
+                        label='Instagram (Opsional)'
                         type='text'
                         placeholder='Username tanpa @'
                         onChange={e => setIgUsername(e.target.value)}
@@ -246,7 +246,6 @@ const Form = () => {
                     </button>
                 </div>
                 <button
-                    disabled={!isFollower}
                     onClick={handleRegistration}
                     className='mt-4 bg-violet-800 hover:bg-violet-500 disabled:bg-slate-700'>
                     Register
