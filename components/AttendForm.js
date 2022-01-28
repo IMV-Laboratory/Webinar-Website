@@ -75,7 +75,7 @@ const AttendForm = ({ webinarId }) => {
         <>
             <form
                 onSubmit={handleSubmit}
-                className='flex flex-col gap-4 w-full max-w-xl py-16 font-montserrat'>
+                className='flex flex-col gap-4 w-full max-w-xl py-16'>
                 <h1 className='text-center'>Form Kehadiran</h1>
                 <InputField
                     name='registered_email'

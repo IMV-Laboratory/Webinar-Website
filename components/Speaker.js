@@ -1,7 +1,7 @@
 import Image from 'next/image';
 const Speaker = () => {
     return (
-        <div className='flex flex-col items-center py-8 font-montserrat'>
+        <div className='flex flex-col items-center py-8'>
             <h1>Meet Our Speaker</h1>
 
             <div className='flex md:flex-row flex-col justify-between py-8'>
