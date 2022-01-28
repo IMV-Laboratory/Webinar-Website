@@ -238,6 +238,7 @@ const Form = () => {
                         isSuccess={checkFollowerMutation.isSuccess}
                         isError={checkFollowerMutation.isError}
                         message={message}
+                        state={igUsername}
                     />
                     <button
                         onClick={checkInstagram}
