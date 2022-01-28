@@ -24,7 +24,8 @@ h2 {
 
 p,
 button,
-input {
+input,
+textarea {
     @apply text-sm;
 }
 
@@ -36,6 +37,11 @@ label {
     @apply ml-1 text-xs;
 }
 
-input {
-    @apply p-4 bg-black bg-opacity-25 rounded-lg placeholder:text-slate-500 focus:outline-none focus:ring-4 focus:ring-violet-900;
+input,
+textarea {
+    @apply p-4 bg-black bg-opacity-25 disabled:opacity-50 rounded-lg placeholder:text-slate-500 focus:outline-none focus:ring-4 focus:ring-violet-900;
+}
+
+textarea {
+    @apply resize-none h-40;
 }
