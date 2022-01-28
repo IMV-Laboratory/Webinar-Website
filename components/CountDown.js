@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useWebinarDate } from '../hooks/useRegistration';
+import { useEffect } from 'react';
+import { useWebinar } from '../hooks/useWebinar';
 import { useCountDown } from '../store/countDown';
 
 const CountDown = () => {
-    const { data: webinarDate } = useWebinarDate();
+    const { data: webinar } = useWebinar();
 
     const days = useCountDown(state => state.days);
     const hours = useCountDown(state => state.hours);
@@ -14,7 +14,7 @@ const CountDown = () => {
     const checkIsOutOfTime = useCountDown(state => state.checkIsOutOfTime);
 
     useEffect(() => {
-        const eventDate = new Date(webinarDate);
+        const eventDate = new Date(webinar?.held_on);
 
         const counter = setInterval(() => {
             let now = new Date().getTime('GMT+0700');
@@ -35,7 +35,7 @@ const CountDown = () => {
             }
         }, 1000);
         return () => clearInterval(counter);
-    }, [checkIsOutOfTime, updateCountDown, webinarDate]);
+    }, [checkIsOutOfTime, updateCountDown, webinar]);
 
     return (
         <div className='px-4'>
