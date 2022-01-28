@@ -1,21 +1,5 @@
-import { useQuery, useMutation } from 'react-query';
+import { useMutation } from 'react-query';
 import { supabase } from '../utils/supabaseClient';
-
-const checkWebinarDate = async () => {
-    const { data, error } = await supabase
-        .from('webinars')
-        .select('held_on, open_registration')
-        .eq('open_registration', true)
-        .single();
-
-    if (error) throw new Error(error.message);
-
-    return data.held_on;
-};
-
-export const useWebinarDate = () => {
-    return useQuery('webinar_date', checkWebinarDate);
-};
 
 const registerParticipant = async (
     fullname,
