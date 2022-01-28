@@ -11,6 +11,7 @@ const InputField = ({
     isSuccess = false,
     isError = false,
     message,
+    state,
     ...rest
 }) => {
     return (
@@ -18,22 +19,22 @@ const InputField = ({
             <label htmlFor={name}>{label}</label>
             <input {...rest} />
             <div className='ml-1 flex gap-2'>
-                {isLoading && message && (
+                {isLoading && message && state !== '' && (
                     <>
                         <RefreshIcon className='w-4 h-4 animate-spin text-slate-300' />
                         <p className={`text-xs text-slate-300`}>{message}</p>
                     </>
                 )}
-                {isSuccess && message && (
+                {isSuccess && message && state !== '' && (
                     <>
                         <CheckCircleIcon className='w-4 h-4 text-green-300' />
                         <p className={`text-xs text-green-300`}>{message}</p>
                     </>
                 )}
-                {isError && message && (
+                {isError && message && state !== '' && (
                     <>
                         <XCircleIcon className='w-4 h-4 text-red-300' />
-                        <div className={`text-red-300`}>{message}</div>
+                        <div className={`text-xs text-red-300`}>{message}</div>
                     </>
                 )}
             </div>
