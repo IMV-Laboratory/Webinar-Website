@@ -81,6 +81,7 @@ const Form = () => {
     ]);
 
     const handleRegistration = () => {
+        event.preventDefault();
         registrationMutation.mutate();
     };
 
@@ -142,7 +143,9 @@ const Form = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-4 w-full max-w-xl py-16 font-montserrat'>
+            <form
+                onSubmit={handleRegistration}
+                className='flex flex-col gap-4 w-full max-w-xl py-16'>
                 <h1 className='text-center'>Register Below</h1>
 
                 <InputField
@@ -247,11 +250,12 @@ const Form = () => {
                     </button>
                 </div>
                 <button
-                    onClick={handleRegistration}
+                    disabled={registrationMutation.isLoading}
+                    type='submit'
                     className='mt-4 bg-violet-800 hover:bg-violet-500 disabled:bg-slate-700'>
-                    Register
+                    {registrationMutation.isLoading ? 'Loading...' : 'Register'}
                 </button>
-            </div>
+            </form>
             {modal.show && (
                 <Modal
                     title={modal?.title}
