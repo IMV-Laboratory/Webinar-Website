@@ -9,8 +9,8 @@ const Attendance = () => {
 
     useEffect(() => {
         const now = Date.now();
-        const open = new Date('2022-01-29 10:30:00 GMT+7');
-        const close = new Date('2022-01-29 13:15:00 GMT+7');
+        const open = new Date('2022-01-29 09:35:00 GMT+7');
+        const close = new Date('2022-01-29 12:00:00 GMT+7');
         if (now < close && now > open) {
             setAllowAttendance(true);
         }
@@ -26,7 +26,7 @@ const Attendance = () => {
             ) : (
                 <div className='mt-8 text-center'>
                     <h2>Formulir Kehadiran dapat diisi pada:</h2>
-                    <h1>Sabtu, 29 Januari 2022 pukul 10.30 - 13.15 WIB</h1>
+                    <h1>Sabtu, 29 Januari 2022 pukul 09.35 - 12.00 WIB</h1>
                 </div>
             )}
         </MainLayout>
